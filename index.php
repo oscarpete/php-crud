@@ -2,7 +2,10 @@
 declare(strict_types=1);
 
 //include all your model files here
+require_once 'Model/Entity.php';
+require 'Model/Teacher.php';
 require 'Model/User.php';
+
 //include all your controllers here
 require 'Controller/HomepageController.php';
 require 'Controller/InfoController.php';
