@@ -1,7 +1,8 @@
 <?php
 declare(strict_types = 1);
+include_once 'Controller.php';
 
-class HomepageController
+class HomepageController extends Controller
 {
     //render function with both $_GET and $_POST vars available if it would be needed.
     public function render(array $GET, array $POST)
