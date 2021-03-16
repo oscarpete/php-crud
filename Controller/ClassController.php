@@ -1,11 +1,12 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 include_once 'Controller.php';
 include_once 'loaders/ClassLoader.php';
+
 class ClassController extends Controller
 {
 
-    public function render(array $GET, array $POST)
+    public function render(array $GET, array $POST): void
     {
         //TODO: implement system to handle what the user wishes to do within the system.
         //  meaning: the controller should be able to go to a different view depending on whether
@@ -14,13 +15,13 @@ class ClassController extends Controller
         //  and then use that to vary between pages
         //  for now, we stick with the overview.
 
+        //var_dump($GET);
+        //var_dump($POST);
         //start up loader
-        $loader = new ClassLoader();
-        $pdo = $loader->connect();
+        $loader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
+        $classes = $loader->fetchall();  //fetch ALL rows
 
-        $handle = $pdo->prepare('SELECT className, location FROM crud.class ORDER BY class.id');
-        $handle->execute();
-        $classes = $handle->fetchAll();
+        //var_dump($loader->fetchSingle(1));
 
         //TODO: Implement render() method.
         require 'View/ClassesOverview.php';

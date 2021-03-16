@@ -7,13 +7,24 @@ include_once "includes/header.php";
     <!--here we should generate an overview of classes that are loaded from the database-->
     <table>
         <thead>
-
+        <tr>
+            <th>id</th>
+            <th>Class Name</th>
+            <th>Assigned Teacher</th>
+            <th>location</th>
+        </tr>
         </thead>
         <tbody>
         <?php foreach ($classes as $i => $myClass) : ?>
             <tr>
                 <td>Line <?php echo $i; ?> </td>
-                <td>table row: <?php echo $myClass['className']; ?></td>
+                <td><?php echo $myClass['className']; ?> </td>
+                <td><?php echo $myClass['assignedTeacher']; ?> </td>
+                <td><?php echo $myClass['location']; ?> </td>
+                <td><form method = 'get'>
+                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
+                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">view</button>
+                    </form></button></td>
             </tr>
         <?php endforeach; ?>
         </tbody>

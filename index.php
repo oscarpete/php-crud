@@ -17,13 +17,13 @@ require 'Controller/ClassController.php';
 //this file should never be more than 20 lines of code!
 
 $controller = new HomepageController();
-if(isset($_GET['page']) && $_GET['page'] === 'info') {
-    $controller = new InfoController();
-}
-
-if(isset($_GET['page']) && $_GET['page'] === 'classes') {
-    $controller = new ClassController();
-}
+//if(isset($_GET['page']) && $_GET['page'] === 'info') {
+//    $controller = new InfoController();
+//}
+//
+//if(isset($_GET['page']) && $_GET['page'] === 'classes') {
+//    $controller = new ClassController();
+//}
 
 if(isset($_GET['page']))
 {
