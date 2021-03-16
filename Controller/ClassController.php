@@ -17,13 +17,22 @@ class ClassController extends Controller
 
         //var_dump($GET);
         //var_dump($POST);
-        //start up loader
         $loader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
-        $classes = $loader->fetchall();  //fetch ALL rows
 
         //var_dump($loader->fetchSingle(1));
 
         //TODO: Implement render() method.
-        require 'View/ClassesOverview.php';
+        if(!isset($_GET['id']))
+        {
+            //go to class overview page
+
+            $classes = $loader->fetchall();  //fetch ALL rows
+            require 'View/ClassesOverview.php';
+        }
+
+//        else
+//        {
+//            //go to specific page of class
+//        }
     }
 }

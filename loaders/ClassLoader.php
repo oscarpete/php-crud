@@ -10,7 +10,7 @@ class ClassLoader extends Loader
     private string $password = 'EnterMyBeCode123!';
     private string $db = 'crud';
 
-    private SchoolClass $classes;
+    private array $classes = [];
 
     public function __construct()
     {

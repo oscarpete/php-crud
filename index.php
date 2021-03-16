@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 //include all your model files here
 require_once 'Model/Entity.php';
-require 'Model/Teacher.php';
-require 'Model/User.php';
-require 'Model/SchoolClass.php';
+require_once 'Model/Teacher.php';
+require_once 'Model/User.php';
+require_once 'Model/SchoolClass.php';
 
 //include all your controllers here
 require 'Controller/HomepageController.php';
@@ -17,13 +17,6 @@ require 'Controller/ClassController.php';
 //this file should never be more than 20 lines of code!
 
 $controller = new HomepageController();
-//if(isset($_GET['page']) && $_GET['page'] === 'info') {
-//    $controller = new InfoController();
-//}
-//
-//if(isset($_GET['page']) && $_GET['page'] === 'classes') {
-//    $controller = new ClassController();
-//}
 
 if(isset($_GET['page']))
 {

@@ -21,10 +21,15 @@ include_once "includes/header.php";
                 <td><?php echo $myClass['className']; ?> </td>
                 <td><?php echo $myClass['assignedTeacher']; ?> </td>
                 <td><?php echo $myClass['location']; ?> </td>
+                <td><a href="?id=<?php echo $myClass['id'] ?>"></a></td>
                 <td><form method = 'get'>
                         <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
-                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">view</button>
-                    </form></button></td>
+                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">edit</button>
+                    </form></td>
+                <td><form method = 'get'>
+                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
+                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">delete</button>
+                    </form></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
