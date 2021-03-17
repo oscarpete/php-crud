@@ -1,58 +1,42 @@
 <?php
 declare(strict_types = 1);
-//include_once "Entity.php";
+include_once "Entity.php";
 
 class Teacher extends Entity
 {
-    private $id;
-    private $firstName;
-    private $lastName;
-    private $email;
+    private int $id;
+    private string $firstName;
+    private string $lastName;
+    private string $email;
 
-    public function __construct() {
-        $this->db = Database::connect();
+    public function __construct(int $id, string $firstName, string $lastName, string $email)
+    {
+        $this->id = $id;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->email = $email;
+
     }
-    function getId() {
+
+    public function getId(): int
+    {
         return $this->id;
     }
 
-    function getfirstName() {
+    public function getfirstName(): string
+    {
         return $this->firstName;
     }
 
-    function getlastName() {
+    public function getlastName(): string
+    {
         return $this->lastName;
     }
 
-    function getEmail() {
+    public function getEmail(): string
+    {
         return $this->email;
     }
 
-    function setId($id) {
-        $this->id = $id;
-    }
 
-    function setfirstName($firstName) {
-        $this->firstName = $this->db->real_escape_string($firstName);
-    }
-
-    function setlastName($lastName) {
-        $this->lastName = $this->db->real_escape_string($lastName);
-    }
-
-    function setEmail($email) {
-        $this->email = $this->db->real_escape_string($email);
-    }
-
-
-    public function save(){
-        $sql = "INSERT INTO teacher VALUES(NULL, '{$this->getfirstName()}', '{$this->getlastName()}', '{$this->getEmail()}');";
-        $save = $this->db->query($sql);
-
-        $result = false;
-        if($save){
-            $result = true;
-        }
-        return $result;
-    }
 }
