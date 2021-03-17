@@ -46,16 +46,24 @@ class ClassLoader extends Loader
 
     public function addEntry(SchoolClass $class = null) : void
     {
+        if($class instanceof Entity)
+        {
+            echo("attempting to add new item into database");
+            $pdo = $this->connect();
 
-
-
+            $handle = $pdo->prepare('INSERT INTO crud.class (className, location, assignedTeacher) VALUES (:className, :location, :assignedTeacher)');
+            $handle->bindValue(':className', $class->getName());
+            $handle->bindValue(':location', $class->getLocation());
+            $handle->bindValue(':assignedTeacher', $class->getAssignedTeacher());
+            $handle->execute();
+        }
     }
 
     public function UpdateEntry(SchoolClass $class = null) : void
     {
         if($class instanceof Entity)
         {
-            echo("attempting to add item into database!");
+            echo("attempting to edit item!");
             $pdo = $this->connect();
 
             $handle = $pdo->prepare('UPDATE crud.class SET className = :name, location = :location, assignedTeacher = :teacher WHERE class.id = :id');
@@ -68,6 +76,4 @@ class ClassLoader extends Loader
         }
 
     }
-
-
 }

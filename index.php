@@ -16,7 +16,6 @@ require 'Controller/ClassController.php';
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
 
-$controller = new HomepageController();
 
 if(isset($_GET['page']))
 {
@@ -34,9 +33,11 @@ if(isset($_GET['page']))
             $controller = new StudentController();
             break;
         default:
-            $controller = new HomepageController();
             break;
     }
+}
+else{
+    $controller = new HomepageController();
 }
 
 $controller->render($_GET, $_POST);

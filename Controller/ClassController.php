@@ -25,38 +25,55 @@ class ClassController extends Controller
         //TODO: Implement delete() method.
 
         //check if an item is to be deleted, then delete it.
-        if(isset($POST['delete'], $POST['id']))
+        if (isset($POST['delete'], $POST['id']))
         {
             $classLoader->deleteEntry((int)$POST['id']);
             unset($GET['id']);
         }
-        //also check if an item is to be edited
-        else if(isset($POST['edit'], $POST['id']))
+        if (isset($POST['edit'], $POST['id']))
         {
-            $newData = new SchoolClass((int)$POST['id'],$POST['name'],$POST['teacher'], $POST['location']);
-            $classLoader->UpdateEntry($newData);
+            $newClass = new SchoolClass((int)$POST['id'], $POST['name'], $POST['teacher'], $POST['location']);
+            $classLoader->UpdateEntry($newClass);
         }
+        if (isset($POST['create']))
+        {
+            $newClass = new SchoolClass(0, $POST['name'], $POST['teacher'], $POST['location']);
+            $classLoader->addEntry($newClass);
+        }
+
 
         if (!isset($GET['id']))
         {
-            //go to class overview page
-            $data = $classLoader->fetchall();  //fetch ALL rows
-            require 'View/ClassesOverview.php';
+            if (isset($GET['create']))
+            {
+                //go to new class page
+                $teacherData = $teacherLoader->fetchAll();
+                require 'View/ClassesNewView.php';
+            }
+            else
+            {
+                //go to class overview page
+                $data = $classLoader->fetchall();  //fetch ALL rows
+                require 'View/ClassesOverview.php';
+            }
         }
         else
         {
             $data = $classLoader->fetchSingle((int)$GET['id']);
             $data = $data[0];
-            if (!isset($GET['edit']))
+            if (isset($GET['edit']))
             {
-                //go to class detail page
+                //go to edit page
+                $teacherData = $teacherLoader->fetchAll();
+                //go to class edit page
+                require 'View/ClassesEditView.php';
                 require 'View/ClassesDetailView.php';
             }
             else
             {
                 $teacherData = $teacherLoader->fetchAll();
                 //go to class edit page
-            require 'View/ClassesEditView.php';
+                require 'View/ClassesDetailView.php';
             }
         }
     }

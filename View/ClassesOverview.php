@@ -21,7 +21,7 @@ include_once "includes/header.php";
                 <td><?php echo $myClass['className']; ?> </td>
                 <td><?php echo $myClass['assignedTeacher']; ?> </td>
                 <td><?php echo $myClass['location']; ?> </td>
-                <td><a href="?id=<?php echo $myClass['id'] ?>"></a></td>
+                <td><a href="?id=<?php echo $myClass['id'] ?>">test</a></td>
 
                 <td><form method='GET'>
                         <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
@@ -39,6 +39,8 @@ include_once "includes/header.php";
                     </form></td>
             </tr>
         <?php endforeach; ?>
+        <br>
+        <a href="?page=classes&create=">create new?</a>
         </tbody>
     </table>
 
