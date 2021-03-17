@@ -33,9 +33,10 @@ if(isset($_GET['page']))
         case('students'):
             $controller = new StudentController();
             break;
-        default: break;
+        default:
+            $controller = new HomepageController();
+            break;
     }
 }
-
 
 $controller->render($_GET, $_POST);
