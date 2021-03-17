@@ -7,8 +7,8 @@ include_once "includes/header.php";
 <a href="?page=<?php echo $_GET['page']; ?>"> BACK TO OVERVIEW </a>
 <?php //var_dump($data);?>
 <br>
-<div><?php echo $data[0]['className']; ?></div>
-<div><?php echo $data[0]['assignedTeacher']; ?></div>
-<div><?php echo $data[0]['location']; ?></div>
+<div><?php echo $data['className']; ?></div>
+<div><?php echo $data['assignedTeacher']; ?></div>
+<div><?php echo $data['location']; ?></div>
 
 <?php require 'includes/footer.php'; ?>

@@ -67,7 +67,6 @@ class ClassController extends Controller
                 $teacherData = $teacherLoader->fetchAll();
                 //go to class edit page
                 require 'View/ClassesEditView.php';
-                require 'View/ClassesDetailView.php';
             }
             else
             {
