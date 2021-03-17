@@ -62,8 +62,8 @@ class ClassLoader extends Loader
 
             $handle->bindValue(':id', $class->getId());
             $handle->bindValue(':name', $class->getName());
-            $handle->bindValue(':location', $class->getLocation());
-            $handle->bindValue(':teacher', $class->getAssignedTeacher());
+            $handle->bindValue(':location', (int)$class->getLocation());
+            $handle->bindValue(':teacher', (int)$class->getAssignedTeacher());
             $handle->execute();
         }
 
