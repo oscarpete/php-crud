@@ -22,17 +22,28 @@ class ClassController extends Controller
         //var_dump($loader->fetchSingle(1));
 
         //TODO: Implement render() method.
-        if(!isset($_GET['id']))
+        if (!isset($_GET['id']))
         {
             //go to class overview page
-
-            $classes = $loader->fetchall();  //fetch ALL rows
+            $data = $loader->fetchall();  //fetch ALL rows
             require 'View/ClassesOverview.php';
         }
+        else
+        {
+            $data = $loader->fetchSingle((int)$GET['id']);
+            if (!isset($_GET['edit']))
+            {
+                //go to class detail page
+                $data = $loader->fetchSingle((int)$GET['id']);
+                require 'View/ClassesDetailView.php';
+            }
+            else
+            {
+                //go to class edit page
+                $data = $loader->fetchSingle((int)$GET['id']);
+            require 'View/ClassesEditView.php';
+            }
+        }
 
-//        else
-//        {
-//            //go to specific page of class
-//        }
     }
 }
