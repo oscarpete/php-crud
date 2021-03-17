@@ -7,7 +7,6 @@ class TeacherController extends Controller
 
     public function render(array $GET, array $POST)
     {
-        // TODO: Implement render() method.
 
     }
 }

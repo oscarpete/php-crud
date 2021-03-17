@@ -2,6 +2,7 @@
 declare(strict_types=1);
 include_once 'Controller.php';
 include_once 'loaders/ClassLoader.php';
+include_once 'loaders/TeacherLoader.php';
 
 class ClassController extends Controller
 {
@@ -17,14 +18,15 @@ class ClassController extends Controller
 
         //var_dump($GET);
         //var_dump($POST);
-        $loader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
+        $classLoader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
+        $teacherLoader = new TeacherLoader();
         //var_dump($loader->fetchSingle(1));
         //TODO: Implement delete() method.
 
         //check if an item is to be deleted, then delete it.
         if(isset($POST['delete'], $POST['id']))
         {
-            $loader->deleteEntry((int)$POST['id']);
+            $classLoader->deleteEntry((int)$POST['id']);
             unset($GET['id']);
         }
 
@@ -32,22 +34,22 @@ class ClassController extends Controller
         if (!isset($GET['id']))
         {
             //go to class overview page
-            $data = $loader->fetchall();  //fetch ALL rows
+            $data = $classLoader->fetchall();  //fetch ALL rows
             require 'View/ClassesOverview.php';
         }
         else
         {
-            $data = $loader->fetchSingle((int)$GET['id']);
+            $data = $classLoader->fetchSingle((int)$GET['id']);
+            $data = $data[0];
             if (!isset($GET['edit']))
             {
                 //go to class detail page
-                $data = $loader->fetchSingle((int)$GET['id']);
                 require 'View/ClassesDetailView.php';
             }
             else
             {
+                $teacherData = $teacherLoader->fetchAll();
                 //go to class edit page
-                $data = $loader->fetchSingle((int)$GET['id']);
             require 'View/ClassesEditView.php';
             }
         }
