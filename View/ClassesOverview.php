@@ -7,36 +7,13 @@ include_once "includes/header.php";
     <!--here we should generate an overview of classes that are loaded from the database-->
     <table>
         <thead>
-        <tr>
-            <th>id</th>
-            <th>Class Name</th>
-            <th>Assigned Teacher</th>
-            <th>location</th>
-        </tr>
+
         </thead>
         <tbody>
-        <?php foreach ($data as $i => $myClass) : ?>
+        <?php foreach ($classes as $i => $myClass) : ?>
             <tr>
                 <td>Line <?php echo $i; ?> </td>
-                <td><?php echo $myClass['className']; ?> </td>
-                <td><?php echo $myClass['assignedTeacher']; ?> </td>
-                <td><?php echo $myClass['location']; ?> </td>
-                <td><a href="?id=<?php echo $myClass['id'] ?>"></a></td>
-
-                <td><form method='GET'>
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
-                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">more info</button>
-                    </form></td>
-                <td><form method='GET'>
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
-                        <input type="hidden" name="edit">
-                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">edit</button>
-                    </form></td>
-                <td><form method='POST'>
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
-                        <input type="hidden" name="delete">
-                        <button type="submit" name="id" value="<?php echo $myClass['id'];?>">delete</button>
-                    </form></td>
+                <td>table row: <?php echo $myClass['className']; ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
@@ -44,4 +21,4 @@ include_once "includes/header.php";
 
 </section>
 
-<?php require 'includes/footer.php'; ?>
+<?php require 'includes/footer.php' ?>
