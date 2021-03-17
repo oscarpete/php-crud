@@ -1,5 +1,7 @@
 <?php require '../includes/header.php'?>
 
+<?php require 'Connection.php' ?>
+
 <h1>Create a new Teacher</h1>
 
 <div class="container">

@@ -1,4 +1,5 @@
 <?php require '../includes/header.php'?>
+<?php require '../../config/db.php' ?>
 
 <h1>A general overview of all records from Teachers</h1>
 
@@ -10,7 +11,7 @@
                 <?php echo $_GET['success']; ?>
             </div>
         <?php } ?>
-<!--        --><?php //if (mysqli_num_rows($result)) { ?>
+        <?php if (mysqli_num_rows($result)) { ?>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -40,7 +41,7 @@
                 <?php } ?>
                 </tbody>
             </table>
-<!--        --><?php //} ?>
+        <?php } ?>
         <div class="link-right">
             <a href="index.php" class="link-primary">Create</a>
         </div>
