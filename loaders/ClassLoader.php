@@ -62,5 +62,25 @@ class ClassLoader extends Loader
         return $handle->fetchAll();
     }
 
+    public function deleteEntry(int $id) : bool
+    {
+        $id = (int)$id;
+        $pdo = $this->connect();
+        try
+        {
+
+            $handle = $pdo->prepare('DELETE FROM crud.class WHERE class.id = :id');
+            $handle->bindValue(':id', $id);
+            $handle->execute();
+            return true;
+        }
+        catch(PDOException $exception){
+            echo 'something went wrong: ' . $exception;
+            return false;
+        }
+
+
+    }
+
 
 }

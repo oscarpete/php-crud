@@ -24,16 +24,17 @@ include_once "includes/header.php";
                 <td><a href="?id=<?php echo $myClass['id'] ?>"></a></td>
 
                 <td><form method='GET'>
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
+                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
                         <button type="submit" name="id" value="<?php echo $myClass['id'];?>">more info</button>
                     </form></td>
                 <td><form method='GET'>
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
+                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
                         <input type="hidden" name="edit">
                         <button type="submit" name="id" value="<?php echo $myClass['id'];?>">edit</button>
                     </form></td>
                 <td><form method='POST'>
-                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
+                        <input type="hidden" name="page" value="<?php echo htmlspecialchars($GET['page'])?>">
+                        <input type="hidden" name="delete">
                         <button type="submit" name="id" value="<?php echo $myClass['id'];?>">delete</button>
                     </form></td>
             </tr>

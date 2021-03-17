@@ -18,11 +18,18 @@ class ClassController extends Controller
         //var_dump($GET);
         //var_dump($POST);
         $loader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
-
         //var_dump($loader->fetchSingle(1));
+        //TODO: Implement delete() method.
 
-        //TODO: Implement render() method.
-        if (!isset($_GET['id']))
+        //check if an item is to be deleted, then delete it.
+        if(isset($POST['delete'], $POST['id']))
+        {
+            $loader->deleteEntry((int)$POST['id']);
+            unset($GET['id']);
+        }
+
+
+        if (!isset($GET['id']))
         {
             //go to class overview page
             $data = $loader->fetchall();  //fetch ALL rows
@@ -31,7 +38,7 @@ class ClassController extends Controller
         else
         {
             $data = $loader->fetchSingle((int)$GET['id']);
-            if (!isset($_GET['edit']))
+            if (!isset($GET['edit']))
             {
                 //go to class detail page
                 $data = $loader->fetchSingle((int)$GET['id']);
@@ -44,6 +51,5 @@ class ClassController extends Controller
             require 'View/ClassesEditView.php';
             }
         }
-
     }
 }
