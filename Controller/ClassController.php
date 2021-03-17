@@ -16,8 +16,9 @@ class ClassController extends Controller
         //  and then use that to vary between pages
         //  for now, we stick with the overview.
 
-        //var_dump($GET);
-        //var_dump($POST);
+//        var_dump($GET);
+//        echo("POST: ");
+//        var_dump($POST);
         $classLoader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
         $teacherLoader = new TeacherLoader();
         //var_dump($loader->fetchSingle(1));
@@ -29,7 +30,12 @@ class ClassController extends Controller
             $classLoader->deleteEntry((int)$POST['id']);
             unset($GET['id']);
         }
-
+        //also check if an item is to be edited
+        else if(isset($POST['edit'], $POST['id']))
+        {
+            $newData = new SchoolClass((int)$POST['id'],$POST['name'],$POST['teacher'], $POST['location']);
+            $classLoader->UpdateEntry($newData);
+        }
 
         if (!isset($GET['id']))
         {
