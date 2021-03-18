@@ -26,7 +26,7 @@ CONST STUDENTS = 'students';
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
 
-var_dump($_POST);
+//var_dump($_POST);
 $controller = new HomepageController();
 if(isset($_GET['page']))
 {
