@@ -27,10 +27,10 @@
                             Students
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="?page=students">Overview</a></li>
+                            <li><a class="dropdown-item" href="?page=<?php echo STUDENTS;?>">Overview</a></li>
 <!--                            <li><a class="dropdown-item" href="#">Details</a></li>-->
 <!--                            <li><a class="dropdown-item" href="#">Edit</a></li>-->
-                            <li><a class="dropdown-item" href="?page=students&create=">Create</a></li>
+                            <li><a class="dropdown-item" href="?page=<?php echo STUDENTS;?>&create=">Create</a></li>
                         </ul>
                     </li>
 
@@ -40,13 +40,13 @@
                             Teachers
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="?page=teachers">Overview</a>
+                            <li><a class="dropdown-item" href="?page=<?php echo TEACHERS;?>">Overview</a>
 <!--                            </li>-->
 <!--                            <li><a class="dropdown-item" href="http://becode.local/php-crud/view/teacher/detail.php">Details</a>-->
 <!--                            </li>-->
 <!--                            <li><a class="dropdown-item"-->
 <!--                                   href="http://becode.local/php-crud/view/teacher/edit.php">Edit</a></li>-->
-                            <li><a class="dropdown-item" href="?page=teachers&create=">Create</a>
+                            <li><a class="dropdown-item" href="?page=<?php echo TEACHERS;?>&create=">Create</a>
                             </li>
                         </ul>
                     </li>
@@ -57,16 +57,17 @@
                             Classes
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="?page=classes">Overview</a></li>
+                            <li><a class="dropdown-item" href="?page=<?php echo CLASSES;?>">Overview</a></li>
 <!--                            <li><a class="dropdown-item" href="#">Details</a></li>-->
 <!--                            <li><a class="dropdown-item" href="#">Edit</a></li>-->
-                            <li><a class="dropdown-item" href="?page=classes&create=">Create</a></li>
+                            <li><a class="dropdown-item" href="?page=<?php echo CLASSES;?>&create=">Create</a></li>
                         </ul>
                     </li>
 
                 </ul>
-                <form method='post' class="d-flex">
-                    <input class="form-control me-2" type="search" name="searchFor" placeholder="Search" aria-label="Search">
+                <form method='GET' class="d-flex">
+                    <input type="hidden" name="page" value="<?php echo SEARCH;?>">
+                    <input class="form-control me-2" type="search" name="<?php echo SEARCH;?>" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit" >Search</button>
                 </form>
             </div>
