@@ -11,13 +11,14 @@ class ClassLoader extends Loader
         $pdo = $this->connect();
 
         $handle = $pdo->prepare(
-            'SELECT c.id, c.className, concat_ws(" ", t.firstName, t.lastName) AS assignedTeacher, t.id AS teachId, c.location, s.studentCount  
+            'SELECT c.id, c.className, concat_ws(" ", t.firstName, t.lastName) AS assignedTeacher, t.id AS teachId, a.town as town, a.id as location, s.studentCount  
             FROM crud.class AS c 
             LEFT JOIN crud.teacher AS t ON c.assignedTeacher = t.id 
             LEFT JOIN (SELECT cs.classid, COUNT(*) AS studentCount
                 FROM crud.student AS cs
                 WHERE cs.classid IS NOT NULL
-                GROUP BY cs.classid) AS s ON s.classid = c.id  
+                GROUP BY cs.classid) AS s ON s.classid = c.id
+            LEFT JOIN crud.address AS a ON c.location = a.id
             ORDER BY c.id');
         $handle->execute();
         return $handle->fetchAll();

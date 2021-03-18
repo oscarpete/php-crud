@@ -16,7 +16,7 @@ include_once "includes/header.php";
                     placeholder="class name"></div>
         <br>
         <span><label for="location">Class Location</label></span>
-        <div><select name="location" id="location" required>
+        <div><select name="location" id="location">
                 <option value><i>none</i></option>
                 <?php foreach ($locationData as $location): ?>
                     <option value="<?php echo $location['id']; ?>" <?php echo ($location['id'] === $data['classLocation'])? 'selected' : ''; ?>><?php echo $location['name']; ?></option>

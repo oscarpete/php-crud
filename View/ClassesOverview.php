@@ -19,7 +19,7 @@ include_once "includes/header.php";
             <tr>
                 <td><?php echo $myClass['className']; ?> </td>
                 <td><?php echo $myClass['assignedTeacher']; ?> </td>
-                <td><?php echo $myClass['location']; ?> </td>
+                <td><?php echo $myClass['town']; ?> </td>
                 <td><?php echo $myClass['studentCount'] ?: 'none'; ?></td>
                 <td><a href="?id=<?php echo $myClass['id'] ?>"></a></td>
 
@@ -42,8 +42,8 @@ include_once "includes/header.php";
         </tbody>
     </table>
     <br>
-    <a href="?page=classes&create=">create new?</a>
-    <a href="?page=classes&export=CSV">Export as CSV</a>
+    <a href="?page=<?php echo CLASSES;?>&create=">create new?</a>
+    <a href="?page=<?php echo CLASSES;?>&export=CSV">Export as CSV</a>
 
 </section>
 

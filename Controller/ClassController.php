@@ -32,11 +32,11 @@ class ClassController extends Controller
         {
             //based on the post action, the switch wil do a different action. Speaks for itself I think.
             switch($POST['action']){
-                case('delete' && isset($POST['id'])):
+                case('delete'):
                     $classLoader->deleteEntry((int)$POST['id']);
                     unset($GET['id']);
                     break;
-                case('edit' && isset($POST['id'])):
+                case('edit'):
                     $newClass = new SchoolClass((int)$POST['id'], $POST['name'], $POST['teacher'], $POST['location']);
                     $classLoader->UpdateEntry($newClass);
                     break;
@@ -56,7 +56,7 @@ class ClassController extends Controller
                 //export CSV file
                 //Exporter utility class will handle all the hard work for you
                 $exporter = new Exporter();
-                $exporter->exportCSV($classLoader->fetchAll(), 'classes');
+                $exporter->exportCSV($classLoader->fetchAll(), CLASSES);
             }
 
             if (isset($GET['create']))
