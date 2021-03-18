@@ -26,19 +26,53 @@ class TeacherLoader extends Loader
         return $handle->fetchAll();
     }
 
-
-    public function deleteEntry(int $id): bool
+public function deleteEntry(int $id) : bool
     {
-        // TODO: Implement deleteEntry() method.
+        $id = (int)$id;
+        $pdo = $this->connect();
+        try
+        {
+
+            $handle = $pdo->prepare('DELETE FROM crud.teacher WHERE teacher.id = :id');
+            $handle->bindValue(':id', $id);
+            $handle->execute();
+            return true;
+        }
+        catch(PDOException $exception){
+            echo 'something went wrong: ' . $exception;
+            return false;
+        }
     }
 
-    public function addEntry(): void
+    public function addEntry(Teacher $teacher = null) : void
     {
-        // TODO: Implement addEntry() method.
+        if($teacher instanceof Entity)
+        {
+            echo("attempting to add new item into database");
+            $pdo = $this->connect();
+
+            $handle = $pdo->prepare('INSERT INTO crud.teacher (firstName, lastName, email) VALUES (:firstName, :lastName, :email)');
+            $handle->bindValue(':firstName', $teacher->getfirstName());
+            $handle->bindValue(':lastName', $teacher->getlastName());
+            $handle->bindValue(':email', $teacher->getEmail());
+            $handle->execute();
+        }
     }
 
-    public function updateEntry(): void
+    public function UpdateEntry(Teacher $teacher = null) : void
     {
-        // TODO: Implement updateEntry() method.
+        if($teacher instanceof Entity)
+        {
+            echo("attempting to edit item!");
+            $pdo = $this->connect();
+
+            $handle = $pdo->prepare('UPDATE crud.teacher SET firstName = :firstName, lastName = :lastName, email = :email WHERE teacher.id = :id');
+
+            $handle->bindValue(':id', $teacher->getId());
+            $handle->bindValue(':firstName', $teacher->getfirstName());
+            $handle->bindValue(':lastName', $teacher->getlastName());
+            $handle->bindValue(':email', $teacher->getEmail());
+            $handle->execute();
+        }
+
     }
-}
