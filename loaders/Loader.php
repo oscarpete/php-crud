@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 
 abstract class Loader
@@ -35,9 +35,14 @@ abstract class Loader
             return null;
         }
     }
-    abstract public function fetchAll() : ?array;
-    abstract public function fetchSingle(int $id) :?array;
-    abstract public function deleteEntry(int $id) :bool;
-    abstract public function addEntry() : void;
-    abstract public function updateEntry() : void;
-    }
+
+    abstract public function fetchAll(): ?array;
+
+    abstract public function fetchSingle(int $id): ?array;
+
+    abstract public function deleteEntry(int $id): bool;
+
+    abstract public function addEntry(): void;
+
+    abstract public function updateEntry(): void;
+}

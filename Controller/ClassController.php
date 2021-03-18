@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 include_once 'Controller.php';
+include_once 'Utilities/Exporter.php';
 include_once 'loaders/ClassLoader.php';
 include_once 'loaders/TeacherLoader.php';
 
@@ -43,6 +44,13 @@ class ClassController extends Controller
 
         if (!isset($GET['id']))
         {
+            if (isset($GET['export']) && $GET['export'] === 'CSV')
+            {
+                //export CSV file
+                $exporter = new Exporter();
+                $exporter->exportCSV($classLoader->fetchAll(), 'classes');
+            }
+
             if (isset($GET['create']))
             {
                 //go to new class page

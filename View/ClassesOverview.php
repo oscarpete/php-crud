@@ -39,10 +39,11 @@ include_once "includes/header.php";
                     </form></td>
             </tr>
         <?php endforeach; ?>
-        <br>
-        <a href="?page=classes&create=">create new?</a>
         </tbody>
     </table>
+    <br>
+    <a href="?page=classes&create=">create new?</a>
+    <a href="?page=classes&export=CSV">Export as CSV</a>
 
 </section>
 

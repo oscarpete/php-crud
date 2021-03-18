@@ -11,13 +11,13 @@ class ClassLoader extends Loader
         $pdo = $this->connect();
 
         $handle = $pdo->prepare(
-            'SELECT c.id, c.className, concat_ws(" ", t.firstName, t.lastName) as assignedTeacher, t.id as teachId, c.location, s.studentCount  
+            'SELECT c.id, c.className, concat_ws(" ", t.firstName, t.lastName) AS assignedTeacher, t.id AS teachId, c.location, s.studentCount  
             FROM crud.class AS c 
-            LEFT JOIN crud.teacher as t ON c.assignedTeacher = t.id 
-            LEFT JOIN (SELECT crud.student.classid, COUNT(*) AS studentCount
-            FROM crud.student
-            WHERE crud.student.classid IS NOT NULL
-            GROUP BY crud.student.classid) AS s ON s.classid = c.id  
+            LEFT JOIN crud.teacher AS t ON c.assignedTeacher = t.id 
+            LEFT JOIN (SELECT cs.classid, COUNT(*) AS studentCount
+                FROM crud.student AS cs
+                WHERE cs.classid IS NOT NULL
+                GROUP BY cs.classid) AS s ON s.classid = c.id  
             ORDER BY c.id');
         $handle->execute();
         return $handle->fetchAll();
@@ -29,7 +29,12 @@ class ClassLoader extends Loader
         $pdo = $this->connect();
 
 //        $handle = $pdo->prepare('SELECT * FROM crud.class LEFT JOIN crud.teacher ON class.assignedTeacher = teacher.id WHERE class.id = :id ORDER BY class.id');
-        $handle = $pdo->prepare('SELECT class.id as classId, className, location as classLocation, concat_ws( " ", teacher.firstName, teacher.lastName) as teachName, teacher.id as teachId  FROM crud.class LEFT JOIN crud.teacher ON class.assignedTeacher = teacher.id WHERE class.id = :id ORDER BY class.id');
+        $handle = $pdo->prepare(
+            'SELECT c.id AS classId, c.className, c.location AS classLocation, concat_ws( " ", t.firstName, t.lastName) AS teachName, t.id AS teachId  
+            FROM crud.class AS c
+            LEFT JOIN crud.teacher AS t ON c.assignedTeacher = t.id 
+            WHERE c.id = :id 
+            ORDER BY c.id');
         $handle->bindValue(':id', $id);
         $handle->execute();
         return $handle->fetchAll();
