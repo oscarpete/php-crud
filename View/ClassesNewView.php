@@ -22,6 +22,7 @@ include_once "includes/header.php";
                 <br>
                 <span><label for"teacher">Assigned Teacher</label></span>
                 <div><select name="teacher" id="teacher" required>
+                        <option value><i>none</i></option>
                         <?php foreach ($teacherData as $i=>$teacher): ?>
                             <option value="<?php echo $teacher['id']; ?>" <?php echo $i=0 ?'selected': '';?>> <?php echo $teacher['firstName']; ?></option>
                         <?php endforeach; ?>

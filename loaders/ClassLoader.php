@@ -10,7 +10,10 @@ class ClassLoader extends Loader
     {
         $pdo = $this->connect();
 
-        $handle = $pdo->prepare('SELECT * FROM crud.class ORDER BY class.id');
+        $handle = $pdo->prepare('SELECT * FROM crud.class LEFT JOIN (SELECT crud.student.classid, COUNT(*) as studentCount
+FROM crud.student
+WHERE crud.student.classid IS NOT NULL
+GROUP BY crud.student.classid) AS b ON b.classid = crud.class.id  ORDER BY class.id');
         $handle->execute();
         return $handle->fetchAll();
     }
