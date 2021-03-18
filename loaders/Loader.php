@@ -40,4 +40,4 @@ abstract class Loader
     abstract public function deleteEntry(int $id) :bool;
     abstract public function addEntry() : void;
     abstract public function updateEntry() : void;
-}
+    }

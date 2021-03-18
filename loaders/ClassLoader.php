@@ -20,10 +20,29 @@ class ClassLoader extends Loader
         $id = (int)abs($id);
         $pdo = $this->connect();
 
-        $handle = $pdo->prepare('SELECT * FROM crud.class WHERE class.id = :id ORDER BY class.id');
+//        $handle = $pdo->prepare('SELECT * FROM crud.class LEFT JOIN crud.teacher ON class.assignedTeacher = teacher.id WHERE class.id = :id ORDER BY class.id');
+        $handle = $pdo->prepare('SELECT class.id as classId, className, location as classLocation, concat_ws( " ", teacher.firstName, teacher.lastName) as teachName, teacher.id as teachId  FROM crud.class LEFT JOIN crud.teacher ON class.assignedTeacher = teacher.id WHERE class.id = :id ORDER BY class.id');
         $handle->bindValue(':id', $id);
         $handle->execute();
         return $handle->fetchAll();
+    }
+
+    public function fetchByTeacher(int $id) : ?array
+    {
+        $pdo = $this->connect();
+
+        try
+        {
+            $handle = $pdo->prepare('SELECT class.id as classId, className, location as ClassLocation FROM crud.class WHERE class.assignedTeacher = :teachId');
+            $handle->bindValue(':teachId', $id);
+            $handle->execute();
+            return $handle->fetchAll();
+            }
+        catch(PDOException $exception)
+        {
+            echo 'Something went wrong: ' . $exception;
+            return null;
+        }
     }
 
     public function deleteEntry(int $id) : bool

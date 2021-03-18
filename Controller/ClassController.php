@@ -41,12 +41,12 @@ class ClassController extends Controller
             $classLoader->addEntry($newClass);
         }
 
-
         if (!isset($GET['id']))
         {
             if (isset($GET['create']))
             {
                 //go to new class page
+                //this reference to teacherData is needed to create a list of teachers that you can pick from, otherwise it'll cause problems.
                 $teacherData = $teacherLoader->fetchAll();
                 require 'View/ClassesNewView.php';
             }
@@ -71,6 +71,8 @@ class ClassController extends Controller
             else
             {
                 $teacherData = $teacherLoader->fetchAll();
+                //TODO: needs a function from studentLoader that can give me all students in a specific class.
+                //      Should be able to take an ID parameter and work from there.
                 //go to class edit page
                 require 'View/ClassesDetailView.php';
             }
