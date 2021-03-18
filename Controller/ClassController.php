@@ -47,6 +47,7 @@ class ClassController extends Controller
             if (isset($GET['export']) && $GET['export'] === 'CSV')
             {
                 //export CSV file
+                //Exporter utility class will handle all the hard work for you
                 $exporter = new Exporter();
                 $exporter->exportCSV($classLoader->fetchAll(), 'classes');
             }
