@@ -4,6 +4,7 @@ include_once 'Controller.php';
 include_once 'Utilities/Exporter.php';
 include_once 'loaders/ClassLoader.php';
 include_once 'loaders/TeacherLoader.php';
+include_once 'loaders/LocationLoader.php';
 
 class ClassController extends Controller
 {
@@ -22,24 +23,30 @@ class ClassController extends Controller
 //        var_dump($POST);
         $classLoader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
         $teacherLoader = new TeacherLoader();
+        $locationLoader = new LocationLoader();
         //var_dump($loader->fetchSingle(1));
         //TODO: Implement delete() method.
 
         //check if an item is to be deleted, then delete it.
-        if (isset($POST['delete'], $POST['id']))
+        if(isset($POST['action']))
         {
-            $classLoader->deleteEntry((int)$POST['id']);
-            unset($GET['id']);
-        }
-        if (isset($POST['edit'], $POST['id']))
-        {
-            $newClass = new SchoolClass((int)$POST['id'], $POST['name'], $POST['teacher'], $POST['location']);
-            $classLoader->UpdateEntry($newClass);
-        }
-        if (isset($POST['create']))
-        {
-            $newClass = new SchoolClass(0, $POST['name'], $POST['teacher'], $POST['location']);
-            $classLoader->addEntry($newClass);
+            //based on the post action, the switch wil do a different action. Speaks for itself I think.
+            switch($POST['action']){
+                case('delete' && isset($POST['id'])):
+                    $classLoader->deleteEntry((int)$POST['id']);
+                    unset($GET['id']);
+                    break;
+                case('edit' && isset($POST['id'])):
+                    $newClass = new SchoolClass((int)$POST['id'], $POST['name'], $POST['teacher'], $POST['location']);
+                    $classLoader->UpdateEntry($newClass);
+                    break;
+                case('create'):
+                    $newClass = new SchoolClass(0, $POST['name'], $POST['teacher'], $POST['location']);
+                    $classLoader->addEntry($newClass);
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (!isset($GET['id']))
@@ -57,6 +64,7 @@ class ClassController extends Controller
                 //go to new class page
                 //this reference to teacherData is needed to create a list of teachers that you can pick from, otherwise it'll cause problems.
                 $teacherData = $teacherLoader->fetchAll();
+                $locationData = $locationLoader->fetchAll();
                 require 'View/ClassesNewView.php';
             }
             else
@@ -74,6 +82,7 @@ class ClassController extends Controller
             {
                 //go to edit page
                 $teacherData = $teacherLoader->fetchAll();
+                $locationData = $locationLoader->fetchAll();
                 //go to class edit page
                 require 'View/ClassesEditView.php';
             }

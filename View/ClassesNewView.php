@@ -17,20 +17,25 @@ include_once "includes/header.php";
                         placeholder="class name"></div>
             <br>
             <span><label for="location">Class Location</label></span>
-            <div><input type="number" name="location" id="location" required value=""
-                        placeholder='location'>
-                <br>
-                <span><label for"teacher">Assigned Teacher</label></span>
-                <div><select name="teacher" id="teacher" required>
-                        <option value><i>none</i></option>
-                        <?php foreach ($teacherData as $i=>$teacher): ?>
-                            <option value="<?php echo $teacher['id']; ?>" <?php echo $i=0 ?'selected': '';?>> <?php echo $teacher['firstName']; ?></option>
-                        <?php endforeach; ?>
-                    </select></div>
-                <br>
-                <div>
-                    <button type="submit" name="create" id="create">create new class!</button>
-                </div>
+            <div><select name="location" id="location" required>
+                    <option value><i>none</i></option>
+                    <?php foreach ($locationData as $i => $location): ?>
+                        <option value="<?php echo $location['id']; ?>" <?php echo $i = 0 ? 'selected' : 0; ?>><?php echo $location['name']; ?></option>
+                    <?php endforeach; ?>
+                </select></div>
+            <br>
+            <span><label for="teacher">Assigned Teacher</label></span>
+            <div><select name="teacher" id="teacher" required>
+                    <option value><i>none</i></option>
+                    <?php foreach ($teacherData as $j => $teacher): ?>
+                        <option value="<?php echo $teacher['id']; ?>" <?php echo $j = 0 ? 'selected' : ''; ?>> <?php echo $teacher['firstName']; ?></option>
+                    <?php endforeach; ?>
+                </select></div>
+            <br>
+            <div>
+
+                <button type="submit" name="action" id="action" value="create">create new class!</button>
+            </div>
         </form>
         </body>
     </section>

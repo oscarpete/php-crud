@@ -6,7 +6,7 @@ include_once "Model/Teacher.php";
 class TeacherLoader extends Loader
 {
 
-        public function fetchAll(): ?array
+    public function fetchAll(): ?array
     {
         $pdo = $this->connect();
 
@@ -26,7 +26,7 @@ class TeacherLoader extends Loader
         return $handle->fetchAll();
     }
 
-public function deleteEntry(int $id) : bool
+    public function deleteEntry(int $id): bool
     {
         $id = (int)$id;
         $pdo = $this->connect();
@@ -38,15 +38,16 @@ public function deleteEntry(int $id) : bool
             $handle->execute();
             return true;
         }
-        catch(PDOException $exception){
+        catch (PDOException $exception)
+        {
             echo 'something went wrong: ' . $exception;
             return false;
         }
     }
 
-    public function addEntry(Teacher $teacher = null) : void
+    public function addEntry(Teacher $teacher = null): void
     {
-        if($teacher instanceof Entity)
+        if ($teacher instanceof Entity)
         {
             echo("attempting to add new item into database");
             $pdo = $this->connect();
@@ -59,9 +60,9 @@ public function deleteEntry(int $id) : bool
         }
     }
 
-    public function UpdateEntry(Teacher $teacher = null) : void
+    public function UpdateEntry(Teacher $teacher = null): void
     {
-        if($teacher instanceof Entity)
+        if ($teacher instanceof Entity)
         {
             echo("attempting to edit item!");
             $pdo = $this->connect();
@@ -76,3 +77,4 @@ public function deleteEntry(int $id) : bool
         }
 
     }
+}

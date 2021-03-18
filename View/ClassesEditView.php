@@ -16,20 +16,24 @@ include_once "includes/header.php";
                     placeholder="class name"></div>
         <br>
         <span><label for="location">Class Location</label></span>
-        <div><input type="number" name="location" id="location" required value="<?php echo $data['location']; ?>"
-                    placeholder='location'>
-            <br>
-            <span><label for"teacher">Assigned Teacher</label></span>
-            <div><select name="teacher" id="teacher" required>
-                    <?php foreach ($teacherData as $teacher): ?>
-                        <option value="<?php echo $teacher['id']; ?>" <?php echo ($teacher['id'] === $data['assignedTeacher']) ?'selected': '';?>> <?php echo $teacher['firstName']; ?></option>
-                    <?php endforeach; ?>
-                </select></div>
-            <br>
-            <div>
-                <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                <button type="submit" name="edit" id="edit">Update!</button>
-            </div>
+        <div><select name="location" id="location" required>
+                <option value><i>none</i></option>
+                <?php foreach ($locationData as $location): ?>
+                    <option value="<?php echo $location['id']; ?>" <?php echo ($location['id'] === $data['classLocation'])? 'selected' : ''; ?>><?php echo $location['name']; ?></option>
+                <?php endforeach; ?>
+            </select></div>
+        <br>
+        <span><label for"teacher">Assigned Teacher</label></span>
+        <div><select name="teacher" id="teacher" required>
+                <?php foreach ($teacherData as $teacher): ?>
+                    <option value="<?php echo $teacher['id']; ?>" <?php echo ($teacher['id'] === $data['teachId']) ? 'selected' : ''; ?>> <?php echo $teacher['firstName']; ?></option>
+                <?php endforeach; ?>
+            </select></div>
+        <br>
+        <div>
+            <input type="hidden" name="id" value="<?php echo $data['classId']; ?>">
+            <button type="submit" name="action" id="action" value="edit">Update!</button>
+        </div>
     </form>
     </body>
 </section>
