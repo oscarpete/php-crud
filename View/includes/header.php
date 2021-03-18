@@ -20,7 +20,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,12 +27,11 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="?page=students">Overview</a></li>
-<!--                            <li><a class="dropdown-item" href="#">Details</a></li>-->
-<!--                            <li><a class="dropdown-item" href="#">Edit</a></li>-->
+                            <!--                            <li><a class="dropdown-item" href="#">Details</a></li>-->
+                            <!--                            <li><a class="dropdown-item" href="#">Edit</a></li>-->
                             <li><a class="dropdown-item" href="?page=students&create=">Create</a></li>
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -41,16 +39,15 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="?page=teachers">Overview</a>
-<!--                            </li>-->
-<!--                            <li><a class="dropdown-item" href="http://becode.local/php-crud/view/teacher/detail.php">Details</a>-->
-<!--                            </li>-->
-<!--                            <li><a class="dropdown-item"-->
-<!--                                   href="http://becode.local/php-crud/view/teacher/edit.php">Edit</a></li>-->
+                                <!--                            </li>-->
+                                <!--                            <li><a class="dropdown-item" href="http://becode.local/php-crud/view/teacher/detail.php">Details</a>-->
+                                <!--                            </li>-->
+                                <!--                            <li><a class="dropdown-item"-->
+                                <!--                                   href="http://becode.local/php-crud/view/teacher/edit.php">Edit</a></li>-->
                             <li><a class="dropdown-item" href="?page=teachers&create=">Create</a>
                             </li>
                         </ul>
                     </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,12 +55,11 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="?page=classes">Overview</a></li>
-<!--                            <li><a class="dropdown-item" href="#">Details</a></li>-->
-<!--                            <li><a class="dropdown-item" href="#">Edit</a></li>-->
+                            <!--                            <li><a class="dropdown-item" href="#">Details</a></li>-->
+                            <!--                            <li><a class="dropdown-item" href="#">Edit</a></li>-->
                             <li><a class="dropdown-item" href="?page=classes&create=">Create</a></li>
                         </ul>
                     </li>
-
                 </ul>
                 <form method='post' class="d-flex">
                     <input class="form-control me-2" type="search" name="searchFor" placeholder="Search" aria-label="Search">
