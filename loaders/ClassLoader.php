@@ -6,19 +6,24 @@ include_once "Model/SchoolClass.php";
 class ClassLoader extends Loader
 {
 
-    public function fetchAll() : ?array
+    public function fetchAll(): ?array
     {
         $pdo = $this->connect();
 
-        $handle = $pdo->prepare('SELECT * FROM crud.class LEFT JOIN (SELECT crud.student.classid, COUNT(*) as studentCount
-FROM crud.student
-WHERE crud.student.classid IS NOT NULL
-GROUP BY crud.student.classid) AS b ON b.classid = crud.class.id  ORDER BY class.id');
+        $handle = $pdo->prepare(
+            'SELECT c.id, c.className, concat_ws(" ", t.firstName, t.lastName) as assignedTeacher, t.id as teachId, c.location, s.studentCount  
+            FROM crud.class AS c 
+            LEFT JOIN crud.teacher as t ON c.assignedTeacher = t.id 
+            LEFT JOIN (SELECT crud.student.classid, COUNT(*) AS studentCount
+            FROM crud.student
+            WHERE crud.student.classid IS NOT NULL
+            GROUP BY crud.student.classid) AS s ON s.classid = c.id  
+            ORDER BY c.id');
         $handle->execute();
         return $handle->fetchAll();
     }
 
-    public function fetchSingle(int $id) : ?array
+    public function fetchSingle(int $id): ?array
     {
         $id = (int)abs($id);
         $pdo = $this->connect();
@@ -30,7 +35,7 @@ GROUP BY crud.student.classid) AS b ON b.classid = crud.class.id  ORDER BY class
         return $handle->fetchAll();
     }
 
-    public function fetchByTeacher(int $id) : ?array
+    public function fetchByTeacher(int $id): ?array
     {
         $pdo = $this->connect();
 
@@ -40,15 +45,15 @@ GROUP BY crud.student.classid) AS b ON b.classid = crud.class.id  ORDER BY class
             $handle->bindValue(':teachId', $id);
             $handle->execute();
             return $handle->fetchAll();
-            }
-        catch(PDOException $exception)
+        }
+        catch (PDOException $exception)
         {
             echo 'Something went wrong: ' . $exception;
             return null;
         }
     }
 
-    public function deleteEntry(int $id) : bool
+    public function deleteEntry(int $id): bool
     {
         $id = (int)$id;
         $pdo = $this->connect();
@@ -60,15 +65,16 @@ GROUP BY crud.student.classid) AS b ON b.classid = crud.class.id  ORDER BY class
             $handle->execute();
             return true;
         }
-        catch(PDOException $exception){
+        catch (PDOException $exception)
+        {
             echo 'something went wrong: ' . $exception;
             return false;
         }
     }
 
-    public function addEntry(SchoolClass $class = null) : void
+    public function addEntry(SchoolClass $class = null): void
     {
-        if($class instanceof Entity)
+        if ($class instanceof Entity)
         {
             echo("attempting to add new item into database");
             $pdo = $this->connect();
@@ -81,9 +87,9 @@ GROUP BY crud.student.classid) AS b ON b.classid = crud.class.id  ORDER BY class
         }
     }
 
-    public function UpdateEntry(SchoolClass $class = null) : void
+    public function UpdateEntry(SchoolClass $class = null): void
     {
-        if($class instanceof Entity)
+        if ($class instanceof Entity)
         {
             echo("attempting to edit item!");
             $pdo = $this->connect();
