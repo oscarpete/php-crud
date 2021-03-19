@@ -40,15 +40,17 @@ class SearchLoader extends Loader
         //in order to differentiate between which table we're drawing from, we put in a new 'role' column that states their origin.
         $handle = $pdo->prepare(
             "SELECT * 
-                FROM (SELECT id, concat_ws(' ', firstName, lastName) AS name, 'student' AS role
+                FROM (SELECT id, concat_ws(' ', firstName, lastName) AS name, :student AS inTable
                     FROM crud.student
                     UNION ALL
-                    SELECT id, concat_ws(' ', firstName, lastName) AS name, 'teacher' AS role
+                    SELECT id, concat_ws(' ', firstName, lastName) AS name, :teacher AS inTable
                     FROM crud.teacher) as inrinr
                 WHERE name LIKE :search
                 ORDER BY name;"
         );
         $handle->bindValue(':search', $name);
+        $handle->bindValue(':student', STUDENTS);
+        $handle->bindValue(':teacher', TEACHERS);
         $handle->execute();
         return $handle->fetchAll();
     }

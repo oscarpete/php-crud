@@ -11,7 +11,7 @@ include_once "includes/header.php"; ?>
 //            var_dump($data);
             foreach ($data as $result):?>
             <div>
-                <a href="?page=<?php echo $result['role'].'s'?>&id=<?php echo $result['id']?>"><?php echo $result['name']?></a>
+                <a href="?page=<?php echo $result['inTable']?>&id=<?php echo $result['id']?>"><?php echo $result['name']?></a>
             </div>
                 <br>
             <?php
