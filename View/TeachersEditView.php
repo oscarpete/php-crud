@@ -18,14 +18,16 @@ include_once "includes/header.php";
         <label for="lastName">Teacher Last Name</label>
         <div><input type="text" name="lastName" id="lastName" required value='<?php echo $data['lastName']; ?>'
                     placeholder='Last Name'>
+        </div>
             <br/>
             <span><label for="email">Teacher Email</label></span>
             <div><input type="email" name="email" id="email" required value='<?php echo $data['email']; ?>'
                         placeholder='e-mail'>
-
+            </div>
+        <br/>
                 <div>
                     <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                    <button type="submit" name="action" id="action" value="edit">Update!</button>
+                    <button type="submit" name="action" id="action" class="btn btn-secondary" value="edit">Update!</button>
                 </div>
     </form>
 </section>

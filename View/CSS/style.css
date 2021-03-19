@@ -1,0 +1,59 @@
+body {
+    background-color: #16232e;
+    /*background-image: url("View/img/bg.png");*/
+    color: #ebf3eb;
+    font-family: "source sans pro", sans-serif ;
+}
+
+#home {
+    padding : 10rem;
+}
+.icon {
+    display: block;
+}
+.overlay {
+    position: relative;
+    bottom: 0;
+    width:100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(22, 35, 46,0.5);
+    color:whitesmoke;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.col-sm-3:hover .overlay {
+    opacity: 1;
+}
+
+a {
+    color: whitesmoke;
+}
+
+p {
+    color: whitesmoke;
+}
+
+h1, h3{
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(248, 221, 248, 1), 0 6px 20px 0 rgba(248, 221, 248, 1);
+    width : 100%
+}
+
+footer {
+    padding : 5rem;
+}
+
+.extra-button {
+    display : inline-block;
+    padding : 5px;
+}

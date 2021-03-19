@@ -10,9 +10,9 @@ include_once "includes/header.php"; ?>
         <?php if (isset($data)):
 //            var_dump($data);
             foreach ($data as $result):?>
-            <div>
-                <a href="?page=<?php echo $result['inTable']?>&id=<?php echo $result['id']?>"><?php echo $result['name']?></a>
-            </div>
+                <div>
+                    <a href="?page=<?php echo $result['inTable']?>&id=<?php echo $result['id']?>"><?php echo $result['name']?></a>
+                </div>
                 <br>
             <?php
             endforeach;
