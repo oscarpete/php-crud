@@ -18,6 +18,13 @@ include_once "includes/header.php";
         <li>
             <span><b>Location: </b><?php echo $data['classLocation']; ?></span>
         </li>
+        <li><b>Students:</b>
+            <ul>
+                <?php foreach($studentData as $student):?>
+                <span><?php echo $student['name']?></span>
+                <?php endforeach;?>
+            </ul>
+        </li>
     </ul>
 
 <table>

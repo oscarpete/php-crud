@@ -26,13 +26,14 @@ include_once "includes/header.php";
                 <br>
                 </select></div>
             <br>
-            <span><label for="teacher">Assigned Teacher</label></span>
-            <div><select name="teacher" id="teacher" >
-                    <option value><i>none</i></option>
-                    <?php foreach ($teacherData as $j => $teacher): ?>
-                        <option value="<?php echo $teacher['id']; ?>" <?php echo $j = 0 ? 'selected' : ''; ?>> <?php echo $teacher['firstName']; ?></option>
+            <span><label for="classId">Class</label></span>
+            <div><select name="classId" id="classId">
+                    <option value selected><i>none</i></option>
+                    <?php foreach ($classData as $class): ?>
+                        <option value="<?php echo $class['id']; ?>"><?php echo $class['className']; ?></option>
                     <?php endforeach; ?>
-                </select></div>
+                </select>
+            </div>
 
             <br>
             <div>

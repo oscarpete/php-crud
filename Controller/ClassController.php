@@ -23,6 +23,7 @@ class ClassController extends Controller
 //        var_dump($POST);
         $classLoader = new ClassLoader(); //see about fitting all the upcoming logic into the loader class directly.
         $teacherLoader = new TeacherLoader();
+        $studentLoader = new StudentLoader();
         $locationLoader = new LocationLoader();
         //var_dump($loader->fetchSingle(1));
         //TODO: Implement delete() method.
@@ -89,9 +90,8 @@ class ClassController extends Controller
             else
             {
                 $teacherData = $teacherLoader->fetchAll();
-                //TODO: needs a function from studentLoader that can give me all students in a specific class.
-                //      Should be able to take an ID parameter and work from there.
-                //go to class edit page
+                $studentData = $studentLoader->fetchByClass((int)$GET['id']);
+                var_dump($studentData);
                 require 'View/ClassesDetailView.php';
             }
         }

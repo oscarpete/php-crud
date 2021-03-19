@@ -18,7 +18,16 @@ class LocationLoader extends Loader
 
     public function fetchSingle(int $id): ?array
     {
-        // TODO: Implement fetchSingle() method.
+        $pdo = $this->connect();
+
+        $handle = $pdo->prepare(
+            'SELECT a.id AS id, a.town AS name
+            FROM crud.address AS a
+            WHERE a.id = :id
+            ORDER BY name');
+        $handle->bindValue(':id', $id);
+        $handle->execute();
+        return $handle->fetchAll();
     }
 
     public function deleteEntry(int $id): bool

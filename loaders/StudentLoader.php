@@ -67,15 +67,26 @@ class StudentLoader extends Loader
             echo("attempting to edit item!");
             $pdo = $this->connect();
 
-            $handle = $pdo->prepare('UPDATE crud.student SET firstName = :firstName, lastName = :lastName, email = :email WHERE student.id = :id');
+            $handle = $pdo->prepare('UPDATE crud.student SET firstName = :firstName, lastName = :lastName, email = :email, classid = :classid WHERE student.id = :id');
 
             $handle->bindValue(':id', $student->getId());
             $handle->bindValue(':firstName', $student->getfirstName());
             $handle->bindValue(':lastName', $student->getlastName());
             $handle->bindValue(':email', $student->getEmail());
+            $handle->bindValue(':classid', $student->getClassId());
             $handle->execute();
         }
 
+    }
+
+    public function FetchByClass(int $id) : ?array
+    {
+        $pdo = $this->connect();
+
+        $handle = $pdo->prepare('SELECT id, CONCAT_WS(" ", firstName, lastName) as name FROM crud.student as s WHERE s.classid = :id ORDER BY s.id');
+        $handle->bindValue(':id', $id);
+        $handle->execute();
+        return $handle->fetchAll();
     }
 
 }

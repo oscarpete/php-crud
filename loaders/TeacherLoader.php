@@ -20,7 +20,7 @@ class TeacherLoader extends Loader
         $id = (int)abs($id);
         $pdo = $this->connect();
 
-        $handle = $pdo->prepare('SELECT * FROM crud.teacher WHERE teacher.id = :id ORDER BY teacher.id');
+        $handle = $pdo->prepare('SELECT c.className as class, c.id as classid, t.id as teachid, concat_ws(" ", t.firstName, t.lastName) as name, a.town as location FROM crud.teacher AS t LEFT JOIN crud.class AS c ON t.id = c.assignedTeacher LEFT JOIN crud.address AS a ON c.location = a.id WHERE t.id = :id ORDER BY t.id');
         $handle->bindValue(':id', $id);
         $handle->execute();
         return $handle->fetchAll();

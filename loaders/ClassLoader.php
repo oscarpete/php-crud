@@ -31,9 +31,10 @@ class ClassLoader extends Loader
 
 //        $handle = $pdo->prepare('SELECT * FROM crud.class LEFT JOIN crud.teacher ON class.assignedTeacher = teacher.id WHERE class.id = :id ORDER BY class.id');
         $handle = $pdo->prepare(
-            'SELECT c.id AS classId, c.className, c.location AS classLocation, concat_ws( " ", t.firstName, t.lastName) AS teachName, t.id AS teachId  
+            'SELECT c.id AS classId, c.className, a.town AS classLocation, concat_ws( " ", t.firstName, t.lastName) AS teachName, t.id AS teachId  
             FROM crud.class AS c
             LEFT JOIN crud.teacher AS t ON c.assignedTeacher = t.id 
+            LEFT JOIN crud.address AS a ON a.id = c.location
             WHERE c.id = :id 
             ORDER BY c.id');
         $handle->bindValue(':id', $id);
@@ -97,15 +98,15 @@ class ClassLoader extends Loader
     {
         if ($class instanceof Entity)
         {
-            echo("attempting to edit item!");
+            //echo("attempting to edit item!");
             $pdo = $this->connect();
 
             $handle = $pdo->prepare('UPDATE crud.class SET className = :name, location = :location, assignedTeacher = :teacher WHERE class.id = :id');
 
             $handle->bindValue(':id', $class->getId());
             $handle->bindValue(':name', $class->getName());
-            $handle->bindValue(':location', (int)$class->getLocation());
-            $handle->bindValue(':teacher', (int)$class->getAssignedTeacher());
+            $handle->bindValue(':location', $class->getLocation());
+            $handle->bindValue(':teacher', $class->getAssignedTeacher());
             $handle->execute();
         }
 

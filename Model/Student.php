@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 include_once "Entity.php";
 
 class Student extends Entity
@@ -8,13 +8,15 @@ class Student extends Entity
     private string $firstName;
     private string $lastName;
     private string $email;
+    private int $classId;
 
-    public function __construct(int $id, string $firstName, string $lastName, string $email)
+    public function __construct(int $id, string $firstName, string $lastName, string $email, int $classId = null)
     {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
+        $this->classId = $classId;
 
     }
 
@@ -36,6 +38,11 @@ class Student extends Entity
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getClassId(): int
+    {
+        return $this->classId;
     }
 
 
