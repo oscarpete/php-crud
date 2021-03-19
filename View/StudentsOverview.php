@@ -35,16 +35,16 @@ include_once "includes/header.php";
                     </form></td>
                 <td><form method='POST'>
                         <input type="hidden" name="page" value="<?php echo htmlspecialchars($_GET['page'])?>">
-                        <input type="hidden" name="delete">
+                        <input type="hidden" name="action" value="delete">
                         <button type="submit" name="id" value="<?php echo $myStudent['id'];?>">delete</button>
                     </form></td>
             </tr>
         <?php endforeach; ?>
-        <br>
-        <a href="?page=students&create=">create new?</a>
         </tbody>
     </table>
-
+    <br>
+    <a href="?page=<?php echo STUDENTS;?>&create=">create new?</a>
+    <a href="?page=<?php echo STUDENTS;?>&export=CSV">Export as CSV</a>
 </section>
 
 <?php require 'includes/footer.php' ?>

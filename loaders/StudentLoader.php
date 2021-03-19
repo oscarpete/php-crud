@@ -10,7 +10,7 @@ class StudentLoader extends Loader
     {
         $pdo = $this->connect();
 
-        $handle = $pdo->prepare('SELECT * FROM crud.student ORDER BY student.id');;
+        $handle = $pdo->prepare('SELECT * FROM crud.student ORDER BY student.id');
         $handle->execute();
         return $handle->fetchAll();
     }

@@ -32,7 +32,7 @@ include_once "includes/header.php";
                 </select></div>  -->
             <br>
             <div>
-                <button type="submit" name="create" id="create">create new Teacher!</button>
+                <button type="submit" name="action" id="action" value="create">create new Teacher!</button>
             </div>
     </form>
     </body>

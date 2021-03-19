@@ -20,29 +20,44 @@ class TeacherController extends Controller
         //var_dump($POST);
         $teacherLoader = new TeacherLoader(); //see about fitting all the upcoming logic into the loader class directly.
         $classLoader = new ClassLoader();
+        $locationLoader = new LocationLoader();
         //var_dump($loader->fetchSingle(1));
 
         //TODO: Implement render() method.
         //check if an item is to be deleted, then delete it.
-        if (isset($POST['delete'], $POST['id']))
-        {
-            $teacherLoader->deleteEntry((int)$POST['id']);
-            unset($GET['id']);
-        }
-        if (isset($POST['edit'], $POST['id']))
-        {
-            $newTeacher = new Teacher((int)$POST['id'], $POST['firstName'], $POST['lastName'], $POST['email']);
-            $teacherLoader->UpdateEntry($newTeacher);
-        }
-        if (isset($POST['create']))
-        {
-            $newTeacher = new Teacher(0, $POST['firstName'], $POST['lastName'], $POST['email']);
-            $teacherLoader->addEntry($newTeacher);
-        }
 
+        if(isset($POST['action']))
+        {
+            //based on the post action, the switch wil do a different action. Speaks for itself I think.
+            switch($POST['action']){
+                case('delete'):
+                    $teacherLoader->deleteEntry((int)$POST['id']);
+                    unset($GET['id']);
+                    break;
+                case('edit'):
+                    $newTeacher = new Teacher((int)$POST['id'], $POST['firstName'], $POST['lastName'], $POST['email']);
+                    $teacherLoader->UpdateEntry($newTeacher);
+                    break;
+                case('create'):
+                    $newTeacher = new Teacher(0, $POST['firstName'], $POST['lastName'], $POST['email']);
+                    $teacherLoader->addEntry($newTeacher);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         if (!isset($GET['id']))
         {
+            if (isset($GET['export']) && $GET['export'] === 'CSV')
+            {
+                //export CSV file
+                //Exporter utility class will handle all the hard work for you
+                $exporter = new Exporter();
+                $exporter->exportCSV($teacherLoader->fetchAll(), TEACHERS);
+            }
+
+
             if (isset($GET['create']))
             {
                 //go to new teachers page

@@ -23,25 +23,39 @@ class StudentController extends Controller
 
         //TODO: Implement render() method.
         //check if an item is to be deleted, then delete it.
-        if (isset($POST['delete'], $POST['id']))
+        if(isset($POST['action']))
         {
-            $studentLoader->deleteEntry((int)$POST['id']);
-            unset($GET['id']);
-        }
-        if (isset($POST['edit'], $POST['id']))
-        {
-            $newStudent = new Student((int)$POST['id'], $POST['firstName'], $POST['lastName'], $POST['email']);
-            $studentLoader->UpdateEntry($newStudent);
-        }
-        if (isset($POST['create']))
-        {
-            $newStudent = new Student(0, $POST['firstName'], $POST['lastName'], $POST['email']);
-            $studentLoader->addEntry($newStudent);
+            //based on the post action, the switch wil do a different action. Speaks for itself I think.
+            switch($POST['action']){
+                case('delete'):
+                    $studentLoader->deleteEntry((int)$POST['id']);
+                    unset($GET['id']);
+                    break;
+                case('edit'):
+                    $newStudent = new Student((int)$POST['id'], $POST['firstName'], $POST['lastName'], $POST['email']);
+                    $studentLoader->UpdateEntry($newStudent);
+                    break;
+                case('create'):
+                    $newStudent = new Student(0, $POST['firstName'], $POST['lastName'], $POST['email']);
+                    $studentLoader->addEntry($newStudent);
+                    break;
+                default:
+                    break;
+            }
         }
 
 
         if (!isset($GET['id']))
         {
+            if (isset($GET['export']) && $GET['export'] === 'CSV')
+            {
+                //export CSV file
+                //Exporter utility class will handle all the hard work for you
+                $exporter = new Exporter();
+                $exporter->exportCSV($studentLoader->fetchAll(), STUDENTS);
+            }
+
+
             if (isset($GET['create']))
             {
                 //go to new student page

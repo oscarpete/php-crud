@@ -24,8 +24,8 @@ include_once "includes/header.php";
                         placeholder='e-mail'>
 
                 <div>
-                                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                    <button type="submit" name="edit" id="edit">Update!</button>
+                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                    <button type="submit" name="action" id="action" value="edit">Update!</button>
                 </div>
     </form>
 </section>
