@@ -6,9 +6,9 @@ abstract class Loader
 {
     private string $serverName = 'localhost';
     private string $username = 'becode';
-//    private string $username = 'root';
+   // private string $username = 'root';
     private string $password = 'EnterMyBeCode123!';
-//    private string $password = '';
+   // private string $password = '';
     private string $db = 'crud';
 
     protected function connect(): ?PDO

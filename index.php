@@ -14,6 +14,7 @@ require 'Controller/InfoController.php';
 require 'Controller/TeacherController.php';
 require 'Controller/ClassController.php';
 require 'Controller/StudentController.php';
+require 'Controller/SearchController.php';
 
 //let's throw in a few CONST value that might be useful for navigation.
 //might be interesting to store these in an array or use classes
@@ -22,11 +23,11 @@ CONST INFO = 'info';
 CONST CLASSES = 'classes';
 CONST TEACHERS = 'teachers';
 CONST STUDENTS = 'students';
+CONST SEARCH = 'searchFor';
 
 //you could write a simple IF here based on some $_GET or $_POST vars, to choose your controller
 //this file should never be more than 20 lines of code!
 
-//var_dump($_POST);
 $controller = new HomepageController();
 if(isset($_GET['page']))
 {
@@ -43,6 +44,9 @@ if(isset($_GET['page']))
             break;
         case(STUDENTS):
             $controller = new StudentController();
+            break;
+        case(SEARCH):
+            $controller = new SearchController();
             break;
         default:
             break;
