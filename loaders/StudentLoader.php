@@ -27,6 +27,15 @@ class StudentLoader extends Loader
         return $handle->fetchAll();
     }
 
+    public function fetchByTeacher(int $id): ?array
+    {
+        $pdo = $this->connect();
+        $handle = $pdo->prepare('SELECT s.id as id, CONCAT_WS(" ",s.firstName, s.lastName) as name FROM crud.teacher as t JOIN crud.class AS c ON t.id = c.assignedTeacher RIGHT JOIN crud.student AS s on c.id = s.classid WHERE t.id = :id ORDER BY s.firstName;');
+        $handle->bindValue(':id', $id);
+        $handle->execute();
+        return $handle->fetchAll();
+    }
+
     public function deleteEntry(int $id) : bool
     {
         $id = (int)$id;

@@ -26,7 +26,7 @@ include_once "includes/header.php";
             </div>
         <br/>
                 <div>
-                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $data['teachid']; ?>">
                     <button type="submit" name="action" id="action" class="btn btn-secondary" value="edit">Update!</button>
                 </div>
     </form>

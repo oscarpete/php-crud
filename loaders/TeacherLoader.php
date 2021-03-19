@@ -20,7 +20,7 @@ class TeacherLoader extends Loader
         $id = (int)abs($id);
         $pdo = $this->connect();
 
-        $handle = $pdo->prepare('SELECT c.className as class, c.id as classid, t.id as teachid, concat_ws(" ", t.firstName, t.lastName) as name, a.town as location FROM crud.teacher AS t LEFT JOIN crud.class AS c ON t.id = c.assignedTeacher LEFT JOIN crud.address AS a ON c.location = a.id WHERE t.id = :id ORDER BY t.id');
+        $handle = $pdo->prepare('SELECT c.className as class, c.id as classid, t.id as teachid, t.firstName AS firstName, t.lastName as lastName, t.email as email, a.town as location FROM crud.teacher AS t LEFT JOIN crud.class AS c ON t.id = c.assignedTeacher LEFT JOIN crud.address AS a ON c.location = a.id WHERE t.id = :id ORDER BY t.id');
         $handle->bindValue(':id', $id);
         $handle->execute();
         return $handle->fetchAll();
@@ -28,7 +28,6 @@ class TeacherLoader extends Loader
 
     public function deleteEntry(int $id): bool
     {
-        $id = (int)$id;
         $pdo = $this->connect();
         try
         {

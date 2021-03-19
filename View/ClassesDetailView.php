@@ -5,7 +5,6 @@ include_once "includes/header.php";
 
 <!--maybe also add a link to go back to the overview?-->
 <a href="?page=<?php echo $_GET['page']; ?>"> BACK TO OVERVIEW </a>
-<?php //var_dump($data);?>
 <br>
 <?php if (isset($data)): ?>
     <ul>

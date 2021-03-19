@@ -11,7 +11,6 @@ include_once "includes/header.php";
     <body>
     <form method="POST">
         <span><label for="name">Class Name</label></span>
-        <!--    --><?php //var_dump($data);?>
         <div><input type="text" name="name" id="name" required value="<?php echo $data['className']; ?>"
                     placeholder="class name"></div>
         <br>

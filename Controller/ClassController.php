@@ -91,7 +91,6 @@ class ClassController extends Controller
             {
                 $teacherData = $teacherLoader->fetchAll();
                 $studentData = $studentLoader->fetchByClass((int)$GET['id']);
-                var_dump($studentData);
                 require 'View/ClassesDetailView.php';
             }
         }
