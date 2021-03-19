@@ -67,7 +67,7 @@
                 </ul>
                 <form method='GET' class="d-flex">
                     <input type="hidden" name="page" value="<?php echo SEARCH;?>">
-                    <input class="form-control me-2" type="search" name="<?php echo SEARCH;?>" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="find" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit" >Search</button>
                 </form>
             </div>

@@ -29,11 +29,15 @@ class SearchLoader extends Loader
         // TODO: Implement updateEntry() method.
     }
 
-    public function searchEntries(string $name)
+    public function searchEntries(string $name): ?array
     {
         $pdo = $this->connect();
         $name = '%' . $name . '%';
 
+        //alright, so what does this search function do?
+        //it fetches the student and teacher rows, and ensures their tables are uniform
+        //then, union all combines them into a new table
+        //in order to differentiate between which table we're drawing from, we put in a new 'role' column that states their origin.
         $handle = $pdo->prepare(
             "SELECT * 
                 FROM (SELECT id, concat_ws(' ', firstName, lastName) AS name, 'student' AS role
@@ -46,6 +50,6 @@ class SearchLoader extends Loader
         );
         $handle->bindValue(':search', $name);
         $handle->execute();
-        var_dump($handle->fetchAll());
+        return $handle->fetchAll();
     }
 }

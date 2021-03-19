@@ -11,7 +11,7 @@ class SearchController extends Controller
 //        var_dump($GET);
 //        var_dump($POST);
         $searchEngine = new SearchLoader();
-        $searchEngine->searchEntries("flint");
+        $data = $searchEngine->searchEntries($GET['find']);
         require 'View/SearchResults.php';
     }
 }
